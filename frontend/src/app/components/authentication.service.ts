@@ -90,10 +90,11 @@ export class AuthenticationService {
         if (data.token) {
           this.saveToken(data.token)
         }
+        else{
+        }
         return data
       })
     )
-
     return request
   }
 

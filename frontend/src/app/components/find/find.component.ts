@@ -33,7 +33,7 @@ export class FindComponent implements OnInit {
 
 
   constructor(private placesService: PlacesService, private fb: FormBuilder, private router: Router) {
-    this.hintColor = "#76FF03";
+    this.hintColor = "black";
 
     this.createForm = this.fb.group({
       where: '',
