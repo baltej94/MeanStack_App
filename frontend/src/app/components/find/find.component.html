@@ -35,16 +35,38 @@
 
                 <mat-divider></mat-divider>
                   <br><br>
-
+                  <mat-card>
+                    <div class="parent-container">
+                    <div class="child-container">
+                      <h2><b>check your food nutrients
+                      </b></h2><br>
+                      <form >
+                        <div class="form-group">
+                          <div class="form-group col-lg-6 col-lg-offset-3 input-group">
+                            <input align="start" matInput   placeholder="Food item" #foodItem>
+                            <br><br>
+                          </div>
+                          <button type="submit" class="mat-raised-button " (click)="getInformation();">Go</button>
+                          <div *ngFor="let fields of nutrition" class="list-group-item clearfix">
+                            <div class="pull-left">
+                              <h4 class="list-group-item-text">Calories : {{ fields.calories }}</h4>
+                              <h4 class="list-group-item-text">Protein : {{ fields.protein }}</h4>
+                              <h4 class="list-group-item-text">Serving Weight in Grams : {{ fields.servingWeightGrams }}</h4>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  </mat-card>
+                  <br>
                 <button type="submit" (click)="findPlaces(find.value,  where.value)"  mat-raised-button >
                     search
                     &nbsp; &nbsp; &nbsp;
-                    <mat-icon>search</mat-icon>
+                    <mat-icon> search</mat-icon>
                 </button>
-
-
-
       </form>
     </mat-card>
   </div>
+  
 </body>

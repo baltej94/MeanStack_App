@@ -1,7 +1,7 @@
 body{
   background-image: url("menu-restaurant-vintage-table.jpg");
   background-size: cover;
-  background-color: #cccccc;
+  background-color: white;
   height: 712px;
   background-position: center;
 }
@@ -15,6 +15,7 @@ body{
 
 .field-full-width {
     width: 75%;
+    
 }
 
 
@@ -44,6 +45,9 @@ body{
   .mat-button, .mat-raised-button{
     background-color:black;
     color: white;
+    cursor: pointer;
+    top: calc(50% - XYpx);
+    left: calc(50% - XYpx);
 
 }
 .container {
@@ -141,13 +145,45 @@ body{
 }
 
 .dropdown-content a:hover {
-  background-color: #ddd;
+  background-color:black;
 }
 
 .dropdown:hover .dropdown-content {
   display: block;
 }
 
+.parent-container {
+  position: relative;
+  height:100%;
+  width: 100%;
+}
+
+.child-container {
+  color: black;
+  text-align: left;
+  position: center;
+
+}
+.desc {
+  font-family: Georgia;
+  font-size: 17px;
+}
+
+.thumbnail {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+  transition: 0.3s;
+  min-width: 40%;
+  border-radius: 5px;
+}
+
+.thumbnail-description {
+  min-height: 40px;
+}
+
+.thumbnail:hover {
+  cursor: pointer;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 1);
+}
 
 
 
