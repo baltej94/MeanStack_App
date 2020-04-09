@@ -25,8 +25,14 @@
         <mat-form-field>
           <mat-icon matPrefix>lock_outline</mat-icon>
           <label for="password">Password</label>
-          <input autofocus type="text" matInput placeholder="Password" formControlName="password" [(ngModel)]="credentials.password">
+          <input autofocus type="password" matInput placeholder="Password" formControlName="password" [(ngModel)]="credentials.password">
       </mat-form-field>
+
+      <mat-form-field>
+        <mat-icon matPrefix>lock_outline</mat-icon>
+        <label for="confirm password">confirm Password</label>
+        <input autofocus type="password" matInput placeholder="confirm Password" formControlName="confirm_password" [(ngModel)]="credentials.confirmpassword">
+    </mat-form-field>
 
         <button type="submit" class="mat-raised-button color="primary>Register!</button>
       </form>

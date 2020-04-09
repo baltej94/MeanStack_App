@@ -15,7 +15,8 @@ export class RegisterComponent {
     first_name: "",
     last_name: "",
     email: "",
-    password: ""
+    password: "",
+    confirm_password: ""
   };
   
   registerpage = new FormGroup({
@@ -23,19 +24,25 @@ export class RegisterComponent {
     lastname: new FormControl(),
     email: new FormControl(),
     password: new FormControl(),
+    confirm_password: new FormControl()
   })
  
   constructor(private auth: AuthenticationService, private router: Router) {}
 
   register() {
-    this.auth.register(this.credentials).subscribe(
-      () => {
-        window.alert("user registered")
-        this.router.navigateByUrl("/login");
-      },
-      err => {
-        console.error(err);
-      }
-    );
+    if(this.credentials.password != this.credentials.confirm_password){
+      window.alert("different passwords")
+    }
+    else{
+      this.auth.register(this.credentials).subscribe(
+        () => {
+          window.alert("user registered")
+          this.router.navigateByUrl("/login");
+        },
+        err => {
+          console.error(err);
+        }
+      );
+    }
   }
 }

@@ -22,16 +22,21 @@ export class LoginComponent {
   constructor(private auth: AuthenticationService, private router: Router) {}
 
   login() {
-    console.log(this.credentials)
-    this.auth.login(this.credentials).subscribe(
-      () => {
-        this.router.navigateByUrl('/find')
-      },
-      err => {
-        console.error(err)
-      }
-    )
-  }
+    if(this.credentials.email == '' ){
+      window.alert('enter the username and password')
+    }
+    else{
+      this.auth.login(this.credentials).subscribe(
+        () => {
+          this.router.navigateByUrl('/find')
+        },
+        err => {
+          console.error(err)
+        }
+      )
+    }
+    }
+
   // printfun(){ 
   //   console.log("in this block")
   //   var usernam = (document.getElementById('user') as HTMLInputElement).value
