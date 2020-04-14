@@ -1,54 +1,8 @@
-////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////
-
-
-/// This file and the source code provided can be used only for
-/// the projects and assignments of this course
-
-/// Last Edit by Dr. Atef Bader: 1/27/2019
-
-
-
-////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////
-
-
-
-////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////
-//////////////////////              SETUP NEEDED                ////////////////////
-////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////
-
-//  Install Nodejs (the bundle includes the npm) from the following website:
-//      https://nodejs.org/en/download/
-
-
-//  Before you start nodejs make sure you install from the
-//  command line window/terminal the following packages:
-//      1. npm install express
-//      2. npm install pg
-//      3. npm install pg-format
-//      4. npm install moment --save
-//      5. npm install elasticsearch
-
-
-//  Read the docs for the following packages:
-//      1. https://node-postgres.com/
-//      2.  result API:
-//              https://node-postgres.com/api/result
-//      3. Nearest Neighbor Search
-//              https://postgis.net/workshops/postgis-intro/knn.html
-//      4. https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/quick-start.html
-//      5. https://momentjs.com/
-//      6. http://momentjs.com/docs/#/displaying/format/
-
-
-////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////
-
-
 const express = require('express');
+var cors = require('cors');
+const mongoose = require('mongoose');
+const morgan = require('morgan');
+var methodOverride = require('method-override');
 var cors = require('cors');
 
 var pg = require('pg');
@@ -83,6 +37,9 @@ pgClient.connect();
 
 
 
+
+
+
 const app = express();
 const router = express.Router();
 
@@ -100,6 +57,74 @@ router.all('*', function(req, res, next) {
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
 });
+
+// Configuration
+mongoose.connect('mongodb://localhost/reviews', {
+    useNewUrlParser: true,
+    useCreateIndex: true
+});
+
+
+// Models
+var Review = mongoose.model('Review', {
+    username: {
+        type: String
+    },
+    restaurant_name: {
+        type: String
+    },
+    reviews: {
+        type: String
+    },
+    rating: {
+        type: String
+    },
+});
+
+// Get reviews
+app.post('/getreviews', function(req, res) {
+    console.log(req)
+    console.log("fetching reviews");
+    var query = { username: req.body.username };
+
+    // use mongoose to get all reviews in the database
+    //Review.find(function(err, reviews) 
+    Review.find(query, function(err, result) {
+
+        // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+        if (err)
+            res.send(err)
+        console.log(result)
+        res.json(result); // return all reviews in JSON format
+    });
+});
+
+// create review and send back all reviews after creation
+app.post('/reviews', function(req, res) {
+    //----------Getting NULL here---------------------------------------------------------//////
+    console.log("creating review");
+    console.log(req);
+    // create a review, information comes from request from Ionic
+    Review.create({
+        reviews: req.body.reviews,
+        rating: req.body.rating,
+        username: req.body.username,
+        restaurant_name: req.body.res_name,
+        done: false,
+    }, function(err) {
+        if (err)
+            res.send(err);
+
+        // get and return all the reviews after you create another
+        Review.find(function(err, reviews) {
+            if (err)
+                res.send(err)
+            res.json(reviews);
+        });
+    });
+
+});
+
 
 var Users = require('./Users')
 
@@ -197,6 +222,7 @@ router.route('/stations').get((req, res) => {
 
 router.route('/places/find').post((req, res) => {
 
+
     var str = JSON.stringify(req.body, null, 4);
 
 
@@ -207,6 +233,20 @@ router.route('/places/find').post((req, res) => {
 
 });
 
+router.route('/places/detail').post((req, res) => {
+
+    console.log(req.body);
+    var str = JSON.stringify(req.body, null, 4);
+    console.log(str)
+
+    find_place_detail_from_yelp(req.body.placename).then(function(response) {
+        var hits = response;
+        console.log(res_datails);
+        res.json(res_datails);
+
+    });
+
+});
 
 
 
@@ -290,6 +330,43 @@ async function find_stations_from_divvy(query) {
 ////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
 
+async function find_place_detail_from_yelp(restaraunt_name) {
+    res_datails = [];
+    let body = {
+        size: 1000,
+        from: 0,
+        "query": {
+            "bool": {
+                "must": {
+                    "term": { "categories.alias": restaraunt_name }
+                },
+            }
+        }
+    }
+
+    results = await esClient.search({ index: 'chicago_yelp_reviews', body: body });
+    console.log(results)
+    results.hits.hits.forEach((hit, index) => {
+
+
+        var detail = {
+            "name": hit._source.name,
+            "display_phone": hit._source.display_phone,
+            "address1": hit._source.location.address1,
+            "is_closed": hit._source.is_closed,
+            "rating": hit._source.rating,
+            "review_count": hit._source.review_count,
+            "latitude": hit._source.coordinates.latitude,
+            "longitude": hit._source.coordinates.longitude
+        };
+        console.log("find_place_detail_from_yelp")
+        console.log(details)
+        res_datails.push(detail);
+
+    });
+
+
+}
 
 
 async function find_places_from_yelp(place, where) {
@@ -331,7 +408,7 @@ async function find_places_from_yelp(place, where) {
                     }
                 },
 
-                "must_not": {
+                "must": {
                     "range": {
                         "review_count": { "lte": 500 }
                     }
@@ -346,7 +423,7 @@ async function find_places_from_yelp(place, where) {
 
 
     results = await esClient.search({ index: 'chicago_yelp_reviews', body: body });
-    console.log(results)
+    //console.log(results)
     results.hits.hits.forEach((hit, index) => {
 
 

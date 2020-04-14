@@ -1,0 +1,219 @@
+body {
+    background-image: url("menu-restaurant-vintage-table.jpg");
+    background-size: cover;
+    background-color: white;
+    height: 712px;
+    background-position: center;
+}
+
+.create-form {
+    min-width: 150px;
+    width: 75%;
+    align-items: center;
+    justify-content: center;
+}
+
+.field-full-width {
+    width: 75%;
+}
+
+.mat-icon {
+    background: black;
+    color: white;
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+
+/* .logoutbutton{
+    background-color:purple;
+    color: white;
+    position:absolute;
+    transform: translate(-50%, -50%);    
+    top: 90px;
+    right: 15px;
+    height:20px;
+    width:25;
+  } */
+
+.mat-button,
+.mat-raised-button {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    top: calc(50% - XYpx);
+    left: calc(50% - XYpx);
+}
+
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+
+/* Bottom left text */
+
+.bottom-left {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+}
+
+
+/* Top left text */
+
+.top-left {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+}
+
+
+/* Top right text */
+
+.top-right {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+}
+
+
+/* Bottom right text */
+
+.bottom-right {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+}
+
+
+/* Centered text */
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.navbar {
+    overflow: hidden;
+    background-color: rgb(0, 0, 0);
+}
+
+.navbar a {
+    float: right;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.dropdown {
+    float: right;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+.navbar a:hover,
+.dropdown:hover .dropbtn {
+    background-color: red;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px #f9f9f9;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: blue;
+    padding: 12px 16px;
+    background-color: #f9f9f9;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    z-index: 1;
+}
+
+.dropdown-content a:hover {
+    background-color: black;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.parent-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.child-container {
+    color: black;
+    text-align: left;
+    position: center;
+}
+
+.h1 {
+    color: blue;
+    text-align: center;
+    position: center;
+    padding: auto;
+}
+
+.desc {
+    font-family: Georgia;
+    font-size: 17px;
+}
+
+.thumbnail {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+    transition: 0.3s;
+    min-width: 40%;
+    border-radius: 5px;
+}
+
+.thumbnail-description {
+    min-height: 40px;
+}
+
+.thumbnail:hover {
+    cursor: pointer;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 1);
+}
+
+table {
+    width: 100%;
+    text-align: left;
+}
+
+.mat-column-right {
+    text-align: center;
+}
+
+.mat-cell {
+    color: blue;
+    text-size-adjust: initial;
+}

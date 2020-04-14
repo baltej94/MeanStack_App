@@ -11,29 +11,31 @@ process.env.SECRET_KEY = 'secret'
 users.post('/register', (req, res) => {
     const today = new Date()
     console.log("did it come here")
+    console.log(req.body.first_name)
+    console.log(req.body.last_name)
     console.log(req.body.email)
     console.log(req.body.password)
-    
+
     const userData = {
-        first_name: req.body.firstname,
-        last_name: req.body.lastname,
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
         email: req.body.email,
         password: req.body.password,
         created: today
     }
-    // console.log(first_name)
-    // console.log(last_name)
-    // console.log(email)
-    // console.log(password)
+    console.log(userData)
+        // console.log(last_name)
+        // console.log(email)
+        // console.log(password)
 
     User.findOne({
-            where: {
-                email: req.body.email
-            }
-        })
-        
-        //TODO bcrypt
-        .then(user => {
+        where: {
+            email: req.body.email
+        }
+    })
+
+    //TODO bcrypt
+    .then(user => {
             if (!user) {
                 User.create(userData)
                     .then(user => {
@@ -57,28 +59,31 @@ users.post('/register', (req, res) => {
 })
 
 users.post('/login', (req, res) => {
+    console.log("reqqqqq", req)
+
     User.findOne({
             where: {
                 email: req.body.email,
+
                 password: req.body.password
             }
         })
         //console.log("user.post worked")
-            .then(user => {
-                if (user) {
-                    let token = jwt.sign(user.dataValues, process.env.SECRET_KEY, {
-                        expiresIn: 1440
-                    })
-                    res.json({ token: token })
-                    console.log('checking login user')
-                } else {
-                    res.send('User does not exist')
-                }
-            })
-            .catch(err => {
-                res.send('error: ' + err)
-            })
-    })
+        .then(user => {
+            if (user) {
+                let token = jwt.sign(user.dataValues, process.env.SECRET_KEY, {
+                    expiresIn: 1440
+                })
+                res.json({ token: token })
+                console.log('checking login user')
+            } else {
+                res.send('User does not exist')
+            }
+        })
+        .catch(err => {
+            res.send('error: ' + err)
+        })
+})
 
 users.get('/profile', (req, res) => {
     var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)

@@ -1,3 +1,11 @@
+body  {
+    background-image: url("menu-restaurant-vintage-table.jpg");
+    background-size: cover;
+    background-color: #cccccc;
+    height: 712px;
+    background-position: center;
+}
+
 table {
     width: 100%;
 }
@@ -10,3 +18,4 @@ table {
 agm-map {
     height: 500px;
 }
+

@@ -1,0 +1,14 @@
+body {
+    background-image: url("menu-restaurant-vintage-table.jpg");
+    background-size: cover;
+    background-color: #cccccc;
+    height: 750px;
+    background-position: center;
+}
+
+.p {
+    color: blue;
+    text-decoration: solid;
+    position: relative;
+    font-size: large;
+}

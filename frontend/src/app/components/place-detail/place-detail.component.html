@@ -1,0 +1,67 @@
+<body>
+
+    <div>
+
+        <mat-card>
+            <button mat-raised-button color="primary" routerLink="/find" style="float: left;">
+        Home
+        &nbsp; &nbsp; &nbsp;
+        <mat-icon>home</mat-icon>
+      </button> &nbsp; &nbsp; &nbsp;
+            <button mat-raised-button color="primary" (click)="getInformation()">
+            Get Your Food Nutrients
+            &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
+            <mat-icon>bar_chart</mat-icon>
+          </button>
+
+            <br>
+            <button mat-raised-button color="primary" routerLink="/list_of_places" style="position: absolute;top: 15px;right: 20px;">
+      Go Back
+      <mat-icon>keyboard_backspace</mat-icon>
+    </button>
+            <br>
+            <br>
+            <mat-divider></mat-divider>
+            <br>
+            <mat-card>
+                <p><b>Restaurant:</b> {{this.name}}</p>
+                <hr>
+                <p><b>Contact Number: </b> {{this.display_phone}}</p>
+                <hr>
+                <p><b>Address: </b> {{this.address1}}</p>
+                <hr>
+                <p><b>Rating:</b> {{this.rating}}</p>
+                <!-- <hr>
+      <p><b>reviews:</b> {{this.review_count}}</p> -->
+            </mat-card>
+        </mat-card>
+
+        <mat-card style="height: 75px;">
+            <p class="p">Liked {{this.name}} ? Give Your Reviews! </p>
+            <button mat-raised-button color="primary" routerLink="/reviews" style="position: absolute;top: auto;right:auto;height:auto ;">
+          Write Reviews
+        </button>
+        </mat-card>
+        <mat-card>
+            <div class="parent-container">
+                <div class="child-container">
+                    <form>
+                        <div class="form-group">
+                            <div class="form-group col-lg-6 col-lg-offset-3 input-group">
+                                <input align="start" matInput #foodItem>
+                                <br><br>
+                            </div>
+                            <div *ngFor="let fields of nutrition" class="list-group-item clearfix">
+                                <div class="pull-left">
+                                    <h4 class="list-group-item-text">Calories : {{ fields.calories }}</h4>
+                                    <h4 class="list-group-item-text">Protein : {{ fields.protein }}</h4>
+                                    <h4 class="list-group-item-text">Serving Weight in Grams : {{ fields.servingWeightGrams }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+</body>

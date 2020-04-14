@@ -44,6 +44,14 @@ export class PlacesService {
   Emmiter;
   time_interval;
   stationNameSelected = 'None';
+  findex;
+  whereex;
+  nameex;
+  addressex;
+  phoneex;
+  is_closedex;
+  ratingex;
+  review_countex;
 
   
   constructor(private http: HttpClient) {
@@ -70,14 +78,17 @@ export class PlacesService {
     return this.http.get(`${this.uri}/stations`);
   }
 
- 
 
 
   findPlaces(find, where) {
     const find_places_at = {
       find: find,
-      where: where
+      where: where,
     };
+    this.findex= find,
+    this.whereex=where,
+    console.log(this.findex),
+    console.log(this.whereex);
     return this.http.post(`${this.uri}/places/find`, find_places_at, httpOptions);
   }
 
@@ -88,9 +99,22 @@ export class PlacesService {
   var str = JSON.stringify(find_stations_at, null, 2);
     return this.http.post(`${this.uri}/stations/find`, find_stations_at, httpOptions);
   }
-    
-    
-
+placename:any;
+  findPlacedetail(name,phone,address1,is_closed,rating,review_count) {
+    //this.placename=placeName
+    //console.log(name,phone,address1,is_closed,rating,review_count)
+    this.nameex= name,
+    this.addressex=address1;
+    this.phoneex=phone;
+    this.is_closedex=is_closed;
+    this.ratingex=rating;
+    this.review_countex=review_count;
+    console.log( this.nameex,this.addressex,this.phoneex,this.is_closedex,this.ratingex,this.review_countex)
+    var str = JSON.stringify(this.placename, null, 2);
+    //console.log(this.whereex)
+     this.http.post(`${this.uri}/places/detaill`,this.placename, httpOptions);
+  }
+  
   }
  
  

@@ -27,6 +27,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { Place } from '../../place';
 import { PlacesService } from '../../places.service';
+import { FindComponent } from '../find/find.component';
 
 interface Location {
   lat: number;
@@ -83,7 +84,8 @@ export class ListOfPlacesComponent implements OnInit {
   name_of_place=" ";
   
 
-  displayedColumns = ['name', 'display_phone', 'address1', 'is_closed', 'rating','review_count', 'Divvy'];
+  displayedColumns = ['name','Divvy'];
+  // displayedColumns = ['name', 'display_phone', 'address1', 'is_closed', 'rating','review_count', 'Divvy'];
 
   constructor(private placesService: PlacesService, private router: Router, private http: HttpClient) { }
 
@@ -124,6 +126,18 @@ export class ListOfPlacesComponent implements OnInit {
     this.placesService.findStations(placeName).subscribe(() => {
       this.router.navigate(['/list_of_stations']);
     });
+
+  }
+
+  findPlacedetail(name,display_phone,address1,is_closed,rating,review_count){
+    console.log(name,display_phone,address1,is_closed,rating,review_count)
+    console.log(display_phone)
+     this.placesService.findPlacedetail(name,display_phone,address1,is_closed,rating,review_count)
+    //.subscribe(() => {
+
+    //   this.router.navigate(['/placedetail']);
+
+    // });
 
   }
 

@@ -23,14 +23,15 @@ export class LoginComponent {
 
   login() {
     if(this.credentials.email == '' ){
-      window.alert('enter the username and password')
+      window.alert('Please enter the Username and Password')
     }
     else{
       this.auth.login(this.credentials).subscribe(
         () => {
-          this.router.navigateByUrl('/find')
+          return this.credentials.email,this.router.navigateByUrl('/find')
         },
         err => {
+          alert('Incorrect Credentials. Please try Again')
           console.error(err)
         }
       )

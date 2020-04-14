@@ -82,7 +82,7 @@ export class AuthenticationService {
   
   public login(user: loginPayload): Observable<any> {
     console.log(user)
-    const base = this.http.post(`${this.uri}Users/login`,user)
+    const base = this.http.post(`${this.uri}Users/login`,user,)
     // const base = this.http.get(`/home`)
     // console.log(base)
 
@@ -99,8 +99,13 @@ export class AuthenticationService {
     return request
   }
 
+//   public loginDetails(): UserDetails {
+
+// return 
+//   }
+
   public profile(): Observable<any> {
-    return this.http.get(`/users/profile`, {
+    return this.http.get(`/find`, {
       headers: { Authorization: ` ${this.getToken()}` }
     })
   }

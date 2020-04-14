@@ -18,8 +18,12 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PlacesService } from '../../places.service';
 import { HttpClient } from '@angular/common/http';
+// import { UserDetails } from '../authentication.service';
+import { AuthenticationService, UserDetails, loginPayload } from '../authentication.service'
 
 declare const responsiveVoice: any;
+
+
 
 
 @Component({
@@ -34,9 +38,14 @@ export class FindComponent implements OnInit {
   timeLimit;
   nutrition = [];
   foodItemValue: any;
+  details: UserDetails
+  credentials: loginPayload = {
+    email: '',
+    password: ''
+  }
 
   
-  constructor(private placesService: PlacesService, private fb: FormBuilder, private router: Router, private _http: HttpClient) {
+  constructor(private placesService: PlacesService, private fb: FormBuilder, private router: Router, private _http: HttpClient,private auth: AuthenticationService) {
     this.hintColor = "black";
 
     this.createForm = this.fb.group({
@@ -55,28 +64,19 @@ export class FindComponent implements OnInit {
       this.router.navigate(['/list_of_places']);
 
     });
-
-
+    
   }
 
 
   ngOnInit() {
-  }
-  getInformation() {
-    this.foodItemValue = this.foodItem.nativeElement.value;
-    if(this.foodItemValue !== null && this.foodItemValue != "") {
-      this._http.get(' https://api.nutritionix.com/v1_1/search/' + this.foodItemValue + '?results=0:1&fields=*&appId=f6bcd969&appKey=f88a5a34494c0f78b6197774cbb5a6b2')
-        .subscribe((data: any)=>{
-          for (var i = 0; i < data.hits.length; i++) {
-            this.nutrition[i] = {
-               "calories": data.hits[i].fields.nf_calories,
-               "servingWeightGrams": data.hits[i].fields.nf_serving_weight_grams,
-               "protein": data.hits[i].fields.nf_protein,
-            };
-            console.log("The calories in "+this.foodItemValue+" is "+this.nutrition[i].calories);
-            console.log("The serving weight in grams of "+this.foodItemValue+" is "+this.nutrition[i].servingWeightGrams);
-          }
-        });
+
+    const user = this.auth.getUserDetails()
+    if (user) {
+      this.details=user
+      // console.log(this.details)
+      // console.log(this.details.first_name)
+      // console.log(user.first_name)
+      return user.exp > Date.now() / 1000
     }
   }
 

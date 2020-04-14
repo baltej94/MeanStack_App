@@ -1,42 +1,45 @@
 <body>
-<div class="register-container" >
-  <div class="login-content" >
-    <mat-toolbar class="login-toolbar" color="primary">register</mat-toolbar>
-    <mat-card>
-      <form [formGroup]="registerpage" (submit)="register()">
-        <mat-form-field>
-          <mat-icon matPrefix>person_outline</mat-icon>
-          <label for="name">First name</label>
-          <input autofocus type="text" matInput placeholder="First name" formControlName="firstname"  [(ngModel)]="credentials.first_name">
-        </mat-form-field>
+    <div class="register-container">
+        <div class="login-content">
+            <mat-toolbar class="login-toolbar" color="primary">Register</mat-toolbar>
+            <mat-card>
+                <form [formGroup]="registerpage" (submit)="register()">
+                    <mat-form-field>
+                        <mat-icon matPrefix>person_outline</mat-icon>
+                        <label for="name" class="req">First name</label>
+                        <input autofocus type="text" matInput placeholder="First name" formControlName="firstname" [(ngModel)]="credentials.first_name">
+                    </mat-form-field>
 
-        <mat-form-field>
-          <mat-icon matPrefix>person_outline</mat-icon>
-          <label for="name">Last name</label>
-          <input autofocus type="text" matInput placeholder="Last name" formControlName="lastname" [(ngModel)]="credentials.last_name">
-        </mat-form-field>
+                    <mat-form-field>
+                        <mat-icon matPrefix>person_outline</mat-icon>
+                        <label for="name">Last name</label>
+                        <input autofocus type="text" matInput placeholder="Last name" formControlName="lastname" [(ngModel)]="credentials.last_name">
+                    </mat-form-field>
 
-        <mat-form-field>
-          <mat-icon matPrefix>person_outline</mat-icon>
-          <label for="email">Email address</label>
-          <input autofocus type="text" matInput placeholder="Email address" formControlName="email" [(ngModel)]="credentials.email">
-        </mat-form-field>
+                    <mat-form-field>
+                        <mat-icon matPrefix>person_outline</mat-icon>
+                        <label for="email" class="req">Email address</label>
+                        <input autofocus type="text" matInput placeholder="Email address" formControlName="email" [(ngModel)]="credentials.email">
+                    </mat-form-field>
 
-        <mat-form-field>
-          <mat-icon matPrefix>lock_outline</mat-icon>
-          <label for="password">Password</label>
-          <input autofocus type="password" matInput placeholder="Password" formControlName="password" [(ngModel)]="credentials.password">
-      </mat-form-field>
+                    <mat-form-field>
+                        <mat-icon matPrefix>lock_outline</mat-icon>
+                        <label for="password" class="req">Password</label>
+                        <input autofocus type="password" matInput placeholder="Password" formControlName="password" [(ngModel)]="credentials.password">
+                    </mat-form-field>
 
-      <mat-form-field>
-        <mat-icon matPrefix>lock_outline</mat-icon>
-        <label for="confirm password">confirm Password</label>
-        <input autofocus type="password" matInput placeholder="confirm Password" formControlName="confirm_password" [(ngModel)]="credentials.confirmpassword">
-    </mat-form-field>
+                    <mat-form-field>
+                        <mat-icon matPrefix>lock_outline</mat-icon>
+                        <label for="confirm password" class="req">confirm Password</label>
+                        <input autofocus type="password" matInput placeholder="confirm Password" formControlName="confirm_password" [(ngModel)]="credentials.confirm_password">
+                    </mat-form-field>
 
-        <button type="submit" class="mat-raised-button color="primary>Register!</button>
-      </form>
-    </mat-card>
+                    <button type="submit" class="mat-raised-button color=" primary>Register!</button>
+                    <a href="/login">
+                        <h3>Alreay a User? Login Instead</h3>
+                    </a>
+                </form>
+            </mat-card>
+        </div>
     </div>
-</div>
 </body>

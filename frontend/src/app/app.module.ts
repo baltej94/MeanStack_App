@@ -1,24 +1,10 @@
-////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////
-
-
-/// This file and the source code provided can be used only for
-/// the projects and assignments of this course
-
-/// Last Edit by Dr. Atef Bader: 1/30/2019
-
-
-////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////
-
-
-
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { HttpModule } from '@angular/http';
 
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -54,6 +40,10 @@ import { AuthGuardService } from './components/auth-guard.service';
 import { RegisterComponent } from './components/register/register.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import {IssueService} from './issue.service';
+import { ReviewsComponent } from './components/reviews/reviews.component';
+import { ReviewService } from './review.service';
+import { PlaceDetailComponent } from './components/place-detail/place-detail.component';
+import { GetUserReviewsComponent } from './components/get-user-reviews/get-user-reviews.component';
 
 
 const routes: Routes = [
@@ -65,9 +55,13 @@ const routes: Routes = [
   { path: 'yelp_reviews_chart', component: BarChartComponent},
   { path: 'divvy_trips_chart', component: DivvyTripsChartComponent},
   { path: 'sma_chart', component: RealTimeSMALineComponent},
-  { path: '', component: LoginComponent},
+  { path: '', component: RegisterComponent},
+  { path: 'login', component: LoginComponent},
   { path: 'home', component: HomeComponent},
   { path: 'register', component: RegisterComponent },
+  { path: 'reviews', component: ReviewsComponent },
+  { path: 'placedetail', component: PlaceDetailComponent},
+  { path: 'get-user-reviews', component: GetUserReviewsComponent},
   {
     path: 'profile',
     component: ProfileComponent,
@@ -90,8 +84,10 @@ const routes: Routes = [
     LoginComponent,
     ProfileComponent,
     RegisterComponent,
-
     HomeComponent,
+    ReviewsComponent,
+    PlaceDetailComponent,
+    GetUserReviewsComponent,
   ],
   imports: [
     BrowserModule,
@@ -134,7 +130,7 @@ const routes: Routes = [
 
   ],
 
-  providers: [PlacesService, GoogleMapsAPIWrapper,AuthenticationService, AuthGuardService,IssueService],
+  providers: [PlacesService, GoogleMapsAPIWrapper,AuthenticationService,ReviewService,AuthGuardService,IssueService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

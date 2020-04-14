@@ -1,72 +1,47 @@
 <body>
-  <div class="navbar">
-    <a routerLink="/login">Logout</a>
-    <div class="dropdown">
-      <button class="dropbtn">Profile 
+    <div class="navbar">
+        <a routerLink="/login">Logout</a>
+        <div class="dropdown">
+            <button class="dropbtn">Hello, {{ details.first_name }} {{details.last_name}} 
         <i class="fa fa-caret-down"></i>
       </button>
-      <div class="dropdown-content">
-        <a href="#">Link 1</a>
-        <a href="#">Link 2</a>
-        <a href="#">Link 3</a>
-      </div>
-    </div> 
-  </div>
-<div>
+            <div class="dropdown-content">
+                <a href="#">Reccomendations</a>
+                <a routerLink="/get-user-reviews">Reviews</a>
+            </div>
+        </div>
+    </div>
+    <div>
 
 
-    <mat-card>
-      <form [formGroup]="createForm" class="create-form">
+        <mat-card>
+            <form [formGroup]="createForm" class="create-form">
 
                 <mat-form-field class="field-full-width">
                     <mat-label color=blue> Search </mat-label>
-                    <input align="start" matInput  formControlName="find" #find>
-                  </mat-form-field>
+                    <input align="start" matInput formControlName="find" #find>
+                </mat-form-field>
 
-                  <br><br>
+                <br><br>
 
-                <mat-form-field  class="field-full-width">
+                <mat-form-field class="field-full-width">
                     <mat-label color=blue> Location </mat-label>
-                    <input align="start" matInput  formControlName="where" #where>
+                    <input align="start" matInput formControlName="where" #where>
 
-                  </mat-form-field>
+                </mat-form-field>
 
-                  <br><br>
+                <br><br>
 
                 <mat-divider></mat-divider>
-                  <br><br>
-                  <mat-card>
-                    <div class="parent-container">
-                    <div class="child-container">
-                      <h2><b>check your food nutrients
-                      </b></h2><br>
-                      <form >
-                        <div class="form-group">
-                          <div class="form-group col-lg-6 col-lg-offset-3 input-group">
-                            <input align="start" matInput   placeholder="Food item" #foodItem>
-                            <br><br>
-                          </div>
-                          <button type="submit" class="mat-raised-button " (click)="getInformation();">Go</button>
-                          <div *ngFor="let fields of nutrition" class="list-group-item clearfix">
-                            <div class="pull-left">
-                              <h4 class="list-group-item-text">Calories : {{ fields.calories }}</h4>
-                              <h4 class="list-group-item-text">Protein : {{ fields.protein }}</h4>
-                              <h4 class="list-group-item-text">Serving Weight in Grams : {{ fields.servingWeightGrams }}</h4>
-                            </div>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                  </mat-card>
-                  <br>
-                <button type="submit" (click)="findPlaces(find.value,  where.value)"  mat-raised-button >
+                <br><br>
+                <br>
+                <button type="submit" (click)="findPlaces(find.value,where.value)" mat-raised-button>
                     search
                     &nbsp; &nbsp; &nbsp;
                     <mat-icon> search</mat-icon>
                 </button>
-      </form>
-    </mat-card>
-  </div>
-  
+            </form>
+        </mat-card>
+    </div>
+
 </body>

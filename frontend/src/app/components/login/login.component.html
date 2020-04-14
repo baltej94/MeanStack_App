@@ -1,27 +1,26 @@
 <body>
-<div class="login-container">
-    <div class="login-content">
+    <div class="login-container">
+        <div class="login-content">
             <mat-toolbar class="login-toolbar" color="primary">Login</mat-toolbar>
             <mat-card>
                 <form [formGroup]="loginpage" (submit)="login()">
 
                     <mat-form-field>
                         <mat-icon matPrefix>person_outline</mat-icon>
-                        <label for="email">Username</label>
-                        <input name = "user" autofocus type="text" matInput placeholder="Username" id = "user" formControlName="username" [(ngModel)]="credentials.email">
+                        <label for="email" class="req">Username</label>
+                        <input name="user" autofocus type="text" matInput placeholder="Username" id="user" formControlName="username" [(ngModel)]="credentials.email">
                     </mat-form-field>
 
 
                     <mat-form-field>
                         <mat-icon matPrefix>lock_outline</mat-icon>
-                        <label for="password">Password</label>
-                        <input name="pass" autofocus type="password" matInput placeholder="Password" id = "pass" formControlName="password" [(ngModel)]= "credentials.password">
+                        <label for="password" class="req">Password</label>
+                        <input name="pass" autofocus type="password" matInput placeholder="Password" id="pass" formControlName="password" [(ngModel)]="credentials.password">
                     </mat-form-field>
-                    <button type="submit" class="mat-raised-button color="primary>Login</button>
-                    <button type="submit" class="mat-raised-button color="primary  routerLink="/register">Register</button>
+                    <button type="submit" class="mat-raised-button color=" primary>Login</button>
+                    <button type="submit" class="mat-raised-button color=" primary routerLink="/register">Register</button>
                 </form>
             </mat-card>
+        </div>
     </div>
-</div>
 </body>
-

@@ -30,10 +30,18 @@ export class RegisterComponent {
   constructor(private auth: AuthenticationService, private router: Router) {}
 
   register() {
-    if(this.credentials.password != this.credentials.confirm_password){
-      window.alert("different passwords")
+    if(this.credentials.password != this.credentials.confirm_password ){
+      console.log('this.credentials.password',this.credentials.password)
+      console.log('credentials.confirm_password',this.credentials.confirm_password)
+      
+      window.alert("Passwords Do not Match. Please try Again.")
     }
-    else{
+    else if(this.credentials.first_name==='' || this.credentials.email==='' || this.credentials.password ==='' ||  this.credentials.confirm_password ==='' ){
+      window.alert("Please fill the mandatory fields")
+
+
+    }
+    else if(this.credentials.first_name!=null && this.credentials.email!=null && this.credentials.password!=null && this.credentials.confirm_password!=null ){
       this.auth.register(this.credentials).subscribe(
         () => {
           window.alert("user registered")

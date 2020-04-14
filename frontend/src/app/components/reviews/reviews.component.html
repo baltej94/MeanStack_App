@@ -1,0 +1,60 @@
+<body>
+    <div class="navbar">
+        <a routerLink="/login">Logout</a>
+        <div class="dropdown">
+            <button class="dropbtn">Hello, {{ details.first_name }} {{details.last_name}} 
+      <i class="fa fa-caret-down"></i>
+    </button>
+            <div class="dropdown-content">
+                <a href="#">Reccomendations</a>
+                <a routerLink="/find">Reviews</a>
+            </div>
+        </div>
+    </div>
+    <div>
+        <mat-card>
+            <button mat-raised-button color="primary" routerLink="/find" style="float: left;">
+    Home
+    &nbsp; &nbsp; &nbsp;
+    <mat-icon>home</mat-icon>
+  </button> &nbsp; &nbsp; &nbsp;
+
+            <br>
+            <button mat-raised-button color="primary" routerLink="/list_of_places" style="position: absolute;top: 15px;right: 20px;">
+  Go Back
+  <mat-icon>keyboard_backspace</mat-icon>
+</button>
+        </mat-card>
+    </div>
+
+    <div>
+
+
+
+        <mat-card>
+            <form [formGroup]="createForm" class="create-form">
+
+                <mat-form-field class="field-full-width">
+                    <mat-label color=blue> Review </mat-label>
+                    <input align="start" matInput formControlName="reviews" #reviews>
+                </mat-form-field>
+
+                <br><br>
+
+                <mat-form-field class="field-full-width" input="number">
+                    <mat-label color=blue> Rating </mat-label>
+                    <input align="start" matInput formControlName="rating" #rating>
+
+                </mat-form-field>
+
+                <br>
+                <button mat-raised-button color="primary" type="submit" (click)="WriteReview(reviews.value,rating.value)" mat-raised-button>
+              Submit Review
+              &nbsp; &nbsp; &nbsp;
+              
+          </button>
+            </form>
+        </mat-card>
+    </div>
+
+</body>

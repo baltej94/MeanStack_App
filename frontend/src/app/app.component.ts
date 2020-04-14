@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from './components/authentication.service'
+import { ReviewService } from './review.service';
 
 
 
@@ -12,7 +13,7 @@ import { AuthenticationService } from './components/authentication.service'
 export class AppComponent {
   constructor(private router: Router, public auth: AuthenticationService) { }
 
-  title = 'ChicagoSocialHub-app';
+  title = 'SocioAdvisor Recommender-app';
   registerView;
 
   callHomePage(){ 

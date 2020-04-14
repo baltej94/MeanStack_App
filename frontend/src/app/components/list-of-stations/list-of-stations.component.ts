@@ -62,7 +62,7 @@ export class ListOfStationsComponent implements OnInit {
   timeLimit:string;
 
   displayedColumns = ['id', 'stationName', 'availableBikes', 'availableDocks', 'is_renting', 'lastCommunicationTime', 'latitude',  'longitude', 'status', 'totalDocks','ChartData','smachart'];
-
+  // displayedColumns = ['name', 'display_phone', 'address1', 'is_closed', 'rating','review_count', 'Divvy'];
 
   icon = {
     url: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
